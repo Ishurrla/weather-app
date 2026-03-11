@@ -1,77 +1,97 @@
 import type { WeatherCondition } from '../types/weather'
 
 export interface WeatherTheme {
-  gradient: string
+  background: string
   cardOverlay: string
   accentColor: string
   textColor: string
   navIndicator: string
 }
 
+// Real sky photos from Unsplash (free, no API key required)
+const bgPhotos: Record<WeatherCondition, string> = {
+  Sunny:
+    "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  PartlyCloudy:
+    "url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  Cloudy:
+    "url('https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  Rainy:
+    "url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  Stormy:
+    "url('https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  Night:
+    "url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  Foggy:
+    "url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+  Snowy:
+    "url('https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+}
+
 export function getWeatherTheme(condition: WeatherCondition): WeatherTheme {
   switch (condition) {
     case 'Sunny':
       return {
-        gradient: 'linear-gradient(135deg, #f97316 0%, #f59e0b 40%, #fbbf24 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.12)',
+        background: bgPhotos.Sunny,
+        cardOverlay: 'rgba(0, 0, 0, 0.25)',
         accentColor: '#f97316',
         textColor: '#fff7ed',
         navIndicator: '#f97316',
       }
     case 'PartlyCloudy':
       return {
-        gradient: 'linear-gradient(135deg, #f59e0b 0%, #94a3b8 55%, #cbd5e1 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.13)',
+        background: bgPhotos.PartlyCloudy,
+        cardOverlay: 'rgba(0, 0, 0, 0.28)',
         accentColor: '#f59e0b',
         textColor: '#f8fafc',
         navIndicator: '#f59e0b',
       }
     case 'Cloudy':
       return {
-        gradient: 'linear-gradient(135deg, #64748b 0%, #94a3b8 50%, #cbd5e1 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.10)',
-        accentColor: '#64748b',
+        background: bgPhotos.Cloudy,
+        cardOverlay: 'rgba(0, 0, 0, 0.30)',
+        accentColor: '#94a3b8',
         textColor: '#f1f5f9',
         navIndicator: '#94a3b8',
       }
     case 'Rainy':
       return {
-        gradient: 'linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 50%, #3b82f6 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.08)',
+        background: bgPhotos.Rainy,
+        cardOverlay: 'rgba(0, 0, 0, 0.35)',
         accentColor: '#3b82f6',
         textColor: '#eff6ff',
         navIndicator: '#3b82f6',
       }
     case 'Stormy':
       return {
-        gradient: 'linear-gradient(135deg, #1c1033 0%, #3b0764 40%, #4a044e 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.07)',
+        background: bgPhotos.Stormy,
+        cardOverlay: 'rgba(0, 0, 0, 0.45)',
         accentColor: '#a855f7',
         textColor: '#faf5ff',
         navIndicator: '#a855f7',
       }
     case 'Night':
       return {
-        gradient: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.08)',
+        background: bgPhotos.Night,
+        cardOverlay: 'rgba(0, 0, 0, 0.40)',
         accentColor: '#6366f1',
         textColor: '#eef2ff',
         navIndicator: '#6366f1',
       }
     case 'Foggy':
       return {
-        gradient: 'linear-gradient(135deg, #9ca3af 0%, #d1d5db 50%, #f3f4f6 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.20)',
+        background: bgPhotos.Foggy,
+        cardOverlay: 'rgba(255, 255, 255, 0.15)',
         accentColor: '#6b7280',
-        textColor: '#1f2937',
+        textColor: '#f9fafb',
         navIndicator: '#6b7280',
       }
     case 'Snowy':
       return {
-        gradient: 'linear-gradient(135deg, #bae6fd 0%, #e0f2fe 50%, #f0f9ff 100%)',
-        cardOverlay: 'rgba(255, 255, 255, 0.25)',
+        background: bgPhotos.Snowy,
+        cardOverlay: 'rgba(255, 255, 255, 0.20)',
         accentColor: '#0ea5e9',
-        textColor: '#0c4a6e',
+        textColor: '#f0f9ff',
         navIndicator: '#0ea5e9',
       }
   }

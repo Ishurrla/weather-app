@@ -34,14 +34,17 @@ export function Layout() {
     <div
       className="min-h-screen w-full flex justify-center"
       style={{
-        background: theme.gradient,
+        background: theme.background,
         color: theme.textColor,
         transition: 'background 0.8s ease',
         fontFamily: "'Outfit', sans-serif",
+        position: 'relative',
       }}
     >
+      {/* Subtle dark scrim so text stays readable over any photo */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)', pointerEvents: 'none', zIndex: 0 }} />
       <div
-        style={{ width: '100%', maxWidth: 384, minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}
+        style={{ width: '100%', maxWidth: 384, minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}
       >
         <main style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', paddingBottom: 80 }}>
           <Outlet />
