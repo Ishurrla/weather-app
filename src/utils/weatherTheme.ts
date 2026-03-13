@@ -11,21 +11,21 @@ export interface WeatherTheme {
 // Real sky photos from Unsplash (free, no API key required)
 const bgPhotos: Record<WeatherCondition, string> = {
   Sunny:
-    "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1601297183305-6df142704ea2?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   PartlyCloudy:
-    "url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   Cloudy:
-    "url('https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   Rainy:
-    "url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   Stormy:
-    "url('https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   Night:
-    "url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   Foggy:
-    "url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
   Snowy:
-    "url('https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=800&q=80&auto=format&fit=crop') center/cover no-repeat",
+    "url('https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=1600&q=90&auto=format&fit=crop') center/cover no-repeat",
 }
 
 export function getWeatherTheme(condition: WeatherCondition): WeatherTheme {
