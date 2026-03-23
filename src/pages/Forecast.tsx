@@ -12,6 +12,18 @@ export function Forecast() {
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
 
+  const getForecastSummary = () => {
+    const conditions = data.forecast.map(d => d.condition)
+    const rainy = conditions.filter(c => c === 'Rainy' || c === 'Stormy').length
+    const sunny = conditions.filter(c => c === 'Sunny' || c === 'PartlyCloudy').length
+    const snowy = conditions.filter(c => c === 'Snowy').length
+    if (snowy >= 3) return 'Bundle up — snowy conditions expected for most of the week.'
+    if (rainy >= 4) return 'A wet week ahead — keep an umbrella handy.'
+    if (rainy >= 2) return 'Some rain expected over the next 5 days, plan accordingly.'
+    if (sunny >= 4) return 'Expect plenty of sunshine over the next 5 days.'
+    return 'A mixed bag of weather coming up over the next 5 days.'
+  }
+
   const scroll = (dir: 'left' | 'right') => {
     if (!scrollRef.current) return
     scrollRef.current.scrollBy({ left: dir === 'left' ? -200 : 200, behavior: 'smooth' })
@@ -73,7 +85,7 @@ export function Forecast() {
         </div>
       </section>
 
-      {/* 7-day forecast */}
+      {/* 5-day forecast */}
       <section>
         <h2 className="text-sm font-semibold opacity-70 uppercase tracking-wider mb-3">
           5-Day Forecast
@@ -83,6 +95,9 @@ export function Forecast() {
             <ForecastRow key={i} item={item} cardOverlay={theme.cardOverlay} />
           ))}
         </div>
+        <p style={{ fontSize: 13, opacity: 0.65, marginTop: 12, textAlign: 'center', fontStyle: 'italic' }}>
+          {getForecastSummary()}
+        </p>
       </section>
     </div>
   )
