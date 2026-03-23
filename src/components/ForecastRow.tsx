@@ -1,3 +1,4 @@
+import { IconCloudRain } from '@tabler/icons-react'
 import { WeatherIcon } from './WeatherIcon'
 import type { DailyForecast } from '../types/weather'
 import { useWeather } from '../hooks/useWeather'
@@ -23,8 +24,14 @@ export function ForecastRow({ item, cardOverlay }: Readonly<ForecastRowProps>) {
       }}
     >
       <span className="w-12 font-semibold text-sm text-center shrink-0">{item.day}</span>
-      <div className="flex justify-center">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
         <WeatherIcon condition={item.condition} size={22} />
+        {item.rain_chance > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <IconCloudRain size={10} style={{ opacity: 0.75 }} />
+            <span style={{ fontSize: 10, fontWeight: 600, opacity: 0.85 }}>{item.rain_chance}%</span>
+          </div>
+        )}
       </div>
       <div className="flex items-center justify-center gap-3 text-sm font-medium">
         <span className="opacity-60">{convertTemp(item.low)}{unit}</span>

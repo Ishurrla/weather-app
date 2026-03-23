@@ -1,3 +1,4 @@
+import { IconCloudRain } from '@tabler/icons-react'
 import { WeatherIcon } from './WeatherIcon'
 import type { HourlyForecast } from '../types/weather'
 import { useWeather } from '../hooks/useWeather'
@@ -25,6 +26,12 @@ export function HourlyCard({ item, cardOverlay }: HourlyCardProps) {
       <span className="text-sm font-semibold">
         {convertTemp(item.temperature)}{unit}
       </span>
+      {item.rain_chance > 0 && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <IconCloudRain size={11} style={{ opacity: 0.75 }} />
+          <span style={{ fontSize: 11, fontWeight: 600, opacity: 0.85 }}>{item.rain_chance}%</span>
+        </div>
+      )}
     </div>
   )
 }

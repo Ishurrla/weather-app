@@ -43,6 +43,7 @@ async function fetchWeatherByQuery(query: string): Promise<WeatherData> {
     uv_index: Math.round(uvJson.value ?? 0),
     pressure: current.main.pressure,
     visibility: Math.round(current.visibility / 1000),
+    rain_chance: Math.round((forecastJson.list[0]?.pop ?? 0) * 100),
 
     hourly: forecastJson.list.slice(0, 8).map((item: any) => ({
       time: new Date(item.dt * 1000).toLocaleTimeString([], {
@@ -51,6 +52,7 @@ async function fetchWeatherByQuery(query: string): Promise<WeatherData> {
       }),
       temperature: Math.round(item.main.temp),
       condition: mapCondition(item.weather[0].id, item.weather[0].icon),
+      rain_chance: Math.round((item.pop ?? 0) * 100),
     })),
 
     forecast: Object.values(
@@ -67,6 +69,7 @@ async function fetchWeatherByQuery(query: string): Promise<WeatherData> {
         high: Math.round(Math.max(...dayItems.map((i: any) => i.main.temp_max))),
         low: Math.round(Math.min(...dayItems.map((i: any) => i.main.temp_min))),
         condition: mapCondition(mid.weather[0].id, mid.weather[0].icon, false),
+        rain_chance: Math.round(Math.max(...dayItems.map((i: any) => i.pop ?? 0)) * 100),
       }
     }),
   }

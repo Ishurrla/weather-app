@@ -12,6 +12,7 @@ export interface HourlyForecast {
   time: string
   temperature: number
   condition: WeatherCondition
+  rain_chance: number
 }
 
 export interface DailyForecast {
@@ -19,6 +20,7 @@ export interface DailyForecast {
   high: number
   low: number
   condition: WeatherCondition
+  rain_chance: number
 }
 
 export interface WeatherData {
@@ -32,6 +34,7 @@ export interface WeatherData {
   uv_index: number
   pressure: number
   visibility: number
+  rain_chance: number
   hourly: HourlyForecast[]
   forecast: DailyForecast[]
 }

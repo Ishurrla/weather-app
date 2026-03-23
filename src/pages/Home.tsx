@@ -4,6 +4,7 @@ import {
   IconWind,
   IconThermometer,
   IconMapPin,
+  IconCloudRain,
 } from '@tabler/icons-react'
 import { useWeather } from '../hooks/useWeather'
 import { getWeatherTheme } from '../utils/weatherTheme'
@@ -32,7 +33,28 @@ export function Home() {
 
       {/* Hero temperature */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, justifyContent: 'center', gap: '16px', minHeight: 0 }}>
-        <WeatherIcon condition={data.condition} size={96} className="opacity-90 drop-shadow-lg" />
+        <div style={{ position: 'relative', display: 'inline-flex' }}>
+          <WeatherIcon condition={data.condition} size={96} className="opacity-90 drop-shadow-lg" />
+          {data.rain_chance > 0 && (
+            <div style={{
+              position: 'absolute',
+              bottom: -8,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 3,
+              background: 'rgba(0,0,0,0.35)',
+              backdropFilter: 'blur(8px)',
+              borderRadius: 99,
+              padding: '2px 8px',
+              whiteSpace: 'nowrap',
+            }}>
+              <IconCloudRain size={12} style={{ opacity: 0.85 }} />
+              <span style={{ fontSize: 12, fontWeight: 600 }}>{data.rain_chance}%</span>
+            </div>
+          )}
+        </div>
         <div className="flex items-start leading-none">
           <span
             style={{
