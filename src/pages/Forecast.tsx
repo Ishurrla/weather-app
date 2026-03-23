@@ -25,7 +25,7 @@ export function Forecast() {
   }
 
   return (
-    <div className="flex flex-col gap-6 overflow-x-hidden" style={{ padding: '56px 16px 24px' }}>
+    <div className="flex flex-col gap-6 overflow-x-hidden" style={{ padding: '56px 16px 96px' }}>
       <h1 className="text-2xl font-bold tracking-tight">Forecast</h1>
 
       {/* Hourly strip */}
@@ -76,7 +76,7 @@ export function Forecast() {
       {/* 7-day forecast */}
       <section>
         <h2 className="text-sm font-semibold opacity-70 uppercase tracking-wider mb-3">
-          7-Day Forecast
+          5-Day Forecast
         </h2>
         <div className="flex flex-col gap-2.5 justify-center">
           {data.forecast.map((item, i) => (

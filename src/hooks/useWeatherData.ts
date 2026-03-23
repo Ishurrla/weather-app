@@ -55,14 +55,17 @@ async function fetchWeatherByQuery(query: string): Promise<WeatherData> {
       rain_chance: Math.round((item.pop ?? 0) * 100),
     })),
 
-    forecast: Object.values(
+    forecast: Object.entries(
       forecastJson.list.reduce((acc: any, item: any) => {
         const day = new Date(item.dt * 1000).toLocaleDateString('en', { weekday: 'short' })
         if (!acc[day]) acc[day] = []
         acc[day].push(item)
         return acc
       }, {})
-    ).slice(0, 7).map((dayItems: any) => {
+    )
+    .filter(([day]) => day !== new Date().toLocaleDateString('en', { weekday: 'short' }))
+    .slice(0, 7)
+    .map(([, dayItems]: any) => {
       const mid = dayItems[Math.floor(dayItems.length / 2)]
       return {
         day: new Date(mid.dt * 1000).toLocaleDateString('en', { weekday: 'short' }),
