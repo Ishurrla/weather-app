@@ -14,6 +14,12 @@ export function Home() {
   const { data, unit, convertTemp } = useWeather()
   const theme = getWeatherTheme(data.condition)
 
+  const quickStats = [
+    { icon: <IconThermometer size={28} style={{ opacity: 0.75 }} />, label: 'Feels Like', value: `${convertTemp(data.feels_like)}${unit}`, border: false },
+    { icon: <IconDroplet size={28} style={{ opacity: 0.75 }} />,     label: 'Humidity',   value: `${data.humidity}%`,                       border: true  },
+    { icon: <IconWind size={28} style={{ opacity: 0.75 }} />,        label: 'Wind',       value: `${data.wind_speed} km/h`,                 border: false },
+  ]
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, position: 'relative', padding: '20px 16px 24px' }}>
       {/* City & date */}
@@ -113,22 +119,22 @@ export function Home() {
           margin: '0 8px 0 8px',
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-          <IconThermometer size={28} style={{ opacity: 0.75 }} />
-          <span style={{ fontSize: 14, opacity: 0.6 }}>Feels Like</span>
-          <span style={{ fontSize: 16, fontWeight: 700 }}>{convertTemp(data.feels_like)}{unit}</span>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', borderLeft: '1px solid rgba(255,255,255,0.15)', borderRight: '1px solid rgba(255,255,255,0.15)' }}>
-          <IconDroplet size={28} style={{ opacity: 0.75 }} />
-          <span style={{ fontSize: 14, opacity: 0.6 }}>Humidity</span>
-          <span style={{ fontSize: 16, fontWeight: 700 }}>{data.humidity}%</span>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-          <IconWind size={28} style={{ opacity: 0.75 }} />
-          <span style={{ fontSize: 14, opacity: 0.6 }}>Wind</span>
-          <span style={{ fontSize: 16, fontWeight: 700 }}>{data.wind_speed} km/h</span>
-        </div>
+        {quickStats.map((stat) => (
+          <div
+            key={stat.label}
+            style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
+              ...(stat.border ? { borderLeft: '1px solid rgba(255,255,255,0.15)', borderRight: '1px solid rgba(255,255,255,0.15)' } : {}),
+            }}
+          >
+            {stat.icon}
+            <span style={{ fontSize: 16, opacity: 0.6, color: 'black' }}>{stat.label}</span>
+            <span style={{ fontSize: 16, fontWeight: 700, }}>{stat.value}</span>
+          </div>
+        ))}
       </div>
+
+
     </div>
   )
 }
